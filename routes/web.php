@@ -1,5 +1,4 @@
 <?php
-header("Access-Control-Allow-Origin: *");
 
 use Illuminate\Support\Facades\Route;
 use App\Models\Course;
