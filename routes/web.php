@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Models\Course;
+use App\Models\Registration;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\PaymentController;
 
@@ -34,4 +35,11 @@ Route::controller(RegistrationController::class)->group(function () {
     Route::post('/subscribe', 'subscribe');
     Route::post('/checkpayment', 'checkPayment');
     Route::any('/notificationpayment', 'notificationPayment');
+});
+
+
+Route::get('/check', function(){
+    foreach(Registration::all() as $reg){
+        echo "Nome: " . $reg->name . " CPF: " . $reg->cpf . " Pagamento" . $reg->payment . "<br>";
+    }
 });
