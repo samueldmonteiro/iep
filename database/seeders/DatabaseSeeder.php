@@ -26,18 +26,17 @@ class DatabaseSeeder extends Seeder
 
         Course::create([
             'title' => 'Enfermagem',
-            'description' =>'Curso de Enfergem, Melhor da região teste testeteste teste',
-            'mini_description' =>'atendimento, apredizagem, estagios',
-            'image' => 'courses/images/default.jpg',
+            'description' =>'O curso de Enfermagem forma profissionais capazes de cuidar de pacientes para promover a recuperação da saúde ou qualidade de vida, coletar informações que possam ajudar no diagnóstico médico, administrar medicamentos e aplicar curativos, entre outras atividades.',
+            'mini_description' =>'Atendimento, Apredizagem, Estagios',
+            'image' => 'tec_enfermagem.jpg',
             'slug'=> 'curso-enfermagem'
         ]);
 
         Course::create([
             'title' => 'Informatica',
-            'description' =>'Curso de Informatica, Melhor da região teste teste
-            teste teste',
-            'mini_description' => 'atendimento, apredizagem, estagios',
-            'image' =>'courses/images/default.jpg',
+            'description' =>'O curso de Informática capacita profissionais para o desenvolvimento, implementação e gestão de sistemas de informação e soluções computacionais. O programa prepara os estudantes para lidar com as tecnologias da informação (TI), abrangendo desde a programação de computadores até a análise de sistemas, passando pela gestão de redes de dados e a segurança da informação.',
+            'mini_description' => 'Internet, TI, Pacote Office, Edição',
+            'image' =>'curso_informatica.jpg',
             'slug' =>'curso-informatica'
         ]);
 

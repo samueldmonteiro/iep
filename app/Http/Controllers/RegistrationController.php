@@ -14,7 +14,7 @@ class RegistrationController extends Controller
 
     public function __construct()
     {
-        $this->amount = 1.3;
+        $this->amount = 0.5;
         $this->token = "APP_USR-7372684676678375-022008-aad16a298b9e357748487f8bfe49f800-1387127053";
     }
 
