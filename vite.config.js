@@ -32,9 +32,6 @@ export default defineConfig({
                 'resources/js/app.js',
                 'resources/js/modal/main.js',
                 'resources/js/subscribe_course.js'
-
-
-
             ],
             refresh: true,
         }),

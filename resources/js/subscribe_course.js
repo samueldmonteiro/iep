@@ -1,14 +1,21 @@
 
-
-let data = null;
 document.querySelector('#actionSubs').addEventListener('click', e => {
     e.preventDefault();
 
+  /**  let count = 0;
+    setInterval(_=>{
+      count +=1;
+      console.log('testando');
+
+      if(count == 5){
+        window.location.href = APP_URL + '/sucesso';
+      }
+    }, 1000)**/
 
     if (document.querySelector('.pixContainer').style.display == 'block') {
         console.log('ja tem o qrcode');
 
-        axios.post('/checkpayment', {
+        axios.post(APP_URL + '/checkpayment', {
             email: document.querySelector('#email').value
         }).then(response => {
             console.log(response.data)
@@ -26,18 +33,25 @@ document.querySelector('#actionSubs').addEventListener('click', e => {
             telphone: document.querySelector('#telphone').value,
             cpf: document.querySelector('#cpf').value,
             polo_id: document.querySelector('#polo').value,
-            course_id: document.querySelector('.course_container').id
+            course_id: document.querySelector('.course_container').id,
+            civilstate: document.querySelector('#civilstate').value,
+            rg: document.querySelector('#rg').value,
+            birthday: document.querySelector('#birthday').value
+
         }
-        axios.post('/subscribe', data
+        axios.post(APP_URL + '/subscribe', data
         ).then((response) => {
             console.log(response.data);
             if (response.data.subscribe == 'exists') {
                 console.log('ja existe email');
-            } else {
+            } else if(response.data.error){
+              console.log("Error", response.data.error);
+       }
+            else {
                 document.querySelectorAll('form input, form select').forEach(e => {
                     e.disabled = true;
                 });
-                console.log(response)
+                console.log(response.data)
                 const container = document.querySelector('.pixContainer');
                 container.querySelector('#qrcode').src = response.data.qrcode;
                 container.querySelector('.price').innerText = response.data.amount;
@@ -48,7 +62,6 @@ document.querySelector('#actionSubs').addEventListener('click', e => {
             console.log(error);
         });
     }
-});
-
+}); 
 
 

@@ -207,7 +207,9 @@
         </footer>
 
     </div>
-
+    <script type="text/javascript">
+    var APP_URL = {!! json_encode(url('/')) !!}
+    </script>
     @vite('resources/js/app.js')
     @vite('resources/plugins/greensock/TweenMax.min.js')
     @vite('resources/plugins/greensock/TimelineMax.min.js')

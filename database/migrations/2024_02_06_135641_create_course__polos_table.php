@@ -11,14 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('course__polos', function (Blueprint $table) {
+        Schema::create('course_polo', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('course_id');
             $table->unsignedBigInteger('polo_id');
             $table->decimal('registration_price');
             $table->integer('workload');
             $table->boolean('available');
-            $table->string('shifts');
             $table->timestamps();
         });
     }

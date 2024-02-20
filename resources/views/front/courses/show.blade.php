@@ -17,9 +17,10 @@
 
 <div class="home">
     <div class="home_background_container prlx_parent">
+        <img src="{{Vite::asset('resources/images/slider_background.jpg')}}" alt="">
     </div>
     <div class="home_content">
-        <h1></h1>
+        <h1>{{$course->title}}</h1>
     </div>
 </div>
 
@@ -67,7 +68,7 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Sua Inscrição:</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -82,14 +83,32 @@
                         <input type="email" class="form-control" id="email">
 
                     </div>
-                    <div class="col-12">
+                    <div class="col-6">
                         <label for="inputAddress" class="form-label">Whatsapp(+55)</label>
                         <input type="text" class="form-control" id="telphone">
                     </div>
 
-                    <div class="col-12">
+                    <div class="col-6">
+                        <label for="inputAddress" class="form-label">RG</label>
+                        <input type="text" class="form-control" id="rg">
+                    </div>
+
+                    <div class="col-6">
                         <label for="inputAddress" class="form-label">CPF</label>
                         <input type="text" class="form-control" id="cpf">
+                    </div>
+
+                    <div class="col-6 civil-state">
+                        <label for="inputAddress" class="form-label">Estado Civil</label>
+                        <select class="form-select" aria-label="Default select example" id="civilstate">
+                           <option value="solteiro(a)">Solteiro(a)</option>
+                           <option value="casado(a)">Casado</option>
+                        </select>
+                    </div>
+
+                    <div class="col-6">
+                        <label for="inputAddress" class="form-label">Data de Nascimento</label>
+                        <input type="date" class="form-control" id="birthday">
                     </div>
 
 

@@ -13,6 +13,14 @@ class Course extends Model
     use HasFactory;
 
 
+    protected $fillable = [
+        'title',
+        'description',
+        'mini_description',
+        'image',
+        'slug',
+    ];
+
     public function polos(): BelongsToMany
     {
         return $this->belongsToMany(Polo::class);

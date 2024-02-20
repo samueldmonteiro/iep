@@ -5,11 +5,18 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Polo extends Model
+class CoursePolo extends Model
 {
     use HasFactory;
 
+    protected $table = "course_polo";
+
     protected $fillable = [
-        'name', 'address', 'image', 'contact', 'slug', 'acronym'
+        'course_id',
+        'polo_id',
+        'registration_price',
+        'workload',
+        'available',
     ];
 }
+

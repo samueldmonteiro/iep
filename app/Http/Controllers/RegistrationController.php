@@ -14,8 +14,8 @@ class RegistrationController extends Controller
 
     public function __construct()
     {
-        $this->amount = 0.5;
-        $this->token = "APP_USR-1105463720153764-021011-2bf0810ab2c76a934f1b4e4aa04754ca-1387127053";
+        $this->amount = 1.3;
+        $this->token = "APP_USR-7372684676678375-022008-aad16a298b9e357748487f8bfe49f800-1387127053";
     }
 
     /**
@@ -27,33 +27,34 @@ class RegistrationController extends Controller
         $curl = curl_init();
 
         curl_setopt_array($curl, array(
-            CURLOPT_URL => 'https://api.mercadopago.com/v1/payments',
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_ENCODING => '',
-            CURLOPT_MAXREDIRS => 10,
-            CURLOPT_TIMEOUT => 0,
-            CURLOPT_FOLLOWLOCATION => true,
-            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-            CURLOPT_CUSTOMREQUEST => 'POST',
-            CURLOPT_POSTFIELDS => '{
-                "description": "Payment for product",
-                "external_reference": "' . $reg->id . '",
-                "notification_url": "' . url('/notificationpayment') . '",
-                "payer": {
-                    "email": "test_user_123@testuser.com",
-                    "identification": {
-                    "type": "CPF",
-                    "number": "95749019047"
-                    }
-                },
-                "payment_method_id": "pix",
-                "transaction_amount": ' . $this->amount . '
-                }',
-            CURLOPT_HTTPHEADER => array(
-                'Content-Type: application/json',
-                'Authorization: Bearer ' . $this->token
-            ),
-        ));
+        CURLOPT_URL => 'https://api.mercadopago.com/v1/payments',
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_ENCODING => '',
+        CURLOPT_MAXREDIRS => 10,
+        CURLOPT_TIMEOUT => 0,
+        CURLOPT_FOLLOWLOCATION => true,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => 'POST',
+        CURLOPT_POSTFIELDS => '{
+        "description": "Payment for product",
+        "external_reference": "'.$reg->id.'",
+        "notification_url": "https://google.com",
+        "payer": {
+            "email": "test_user_123@testuser.com",
+            "identification": {
+            "type": "CPF",
+            "number": "95749019047"
+            }
+        },
+        "payment_method_id": "pix",
+        "transaction_amount": ' . $this->amount . '
+        }',
+        CURLOPT_HTTPHEADER => array(
+            'Content-Type: application/json',
+            'Authorization: Bearer ' . $this->token
+        ),
+    ));
+
 
         $response = curl_exec($curl);
         curl_close($curl);
@@ -72,28 +73,37 @@ class RegistrationController extends Controller
                 return json_encode([
                     'copy_paste' => $copia_cola,
                     'qrcode' => "data:image/png;base64, {$img_qrcode}",
-                    'amount' => $transaction_amount,
+                    'amount' => 'R$ '. number_format($transaction_amount, 2, ','),
                     'ext_reference' => $external_reference
                 ]);
             }
         }
+
+        return json_encode(['nao foi possivel ter qrcode']);
     }
 
     public function subscribe(Request $r)
     {
 
         if (Registration::where('email', $r->email)->where('payment', 'approved')->first()) {
-            return json_encode(['subscribe' => 'exists']);
+            return json_encode(['info' => 'Seu Pagamento já foi Aprovado!']);
         }
 
+        if(in_array('', $r->all())){
+                return json_encode(['error'=> 'Preencha Todos com Campos ABAIXO!']);
+        }
         $registration = null;
-        if (Registration::where('email', $r->email)->first()) {
+        if (Registration::where('email', $r->email)->where('course_id', $r->course_id)->first()) {
             $registration = Registration::where('email', $r->email)->first();
         } else {
+
             $registration = new Registration();
             $registration->name = $r->name;
             $registration->email = $r->email;
             $registration->cpf = $r->cpf;
+            $registration->rg = $r->rg;
+            $registration->birthday = $r->birthday;
+            $registration->civilstate = $r->civilstate;
             $registration->telphone = $r->telphone;
             $registration->course_id = $r->course_id;
             $registration->polo_id = $r->polo_id;
@@ -112,7 +122,7 @@ class RegistrationController extends Controller
 
         $resp = true;
         if ($payment->payment == "pending") {
-            $resp = false;;
+            $resp = false;
         }
         return json_encode(['payment' => $resp]);
     }

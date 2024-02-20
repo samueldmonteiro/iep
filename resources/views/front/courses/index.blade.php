@@ -33,25 +33,8 @@
         <div class="row course_boxes">
 
             <!-- Popular Course Item -->
-        @foreach($courses as $c)
-            <div class="col-lg-4 course_box">
-
-                <a class="card" href='{{route('courses.show', ['course'=>$c->slug])}}'>
-                    <img class="card-img-top" src="{{Storage::url($c->image)}}" alt="https://unsplash.com/@kellybrito">
-                    <div class="card-body text-center">
-                        <div class="card-title"><a href="{{route('courses.show', ['course'=>$c->slug])}}">{{$c->title}}</a></div>
-                        <div class="card-text">{{$c->mini_description}}</div>
-                    </div>
-                    <div class="price_box d-flex flex-row align-items-center">
-                        <div class="course_author_image">
-                            <img src="{{Vite::asset('resources/images/author.jpg')}}" alt="https://unsplash.com/@mehdizadeh">
-                        </div>
-                        <div class="course_author_name">Michael Smith, <span>Author</span></div>
-                        <div class="course_price d-flex flex-column align-items-center justify-content-center">
-                            <span>$29</span></div>
-                    </div>
-                </a>
-            </div>
+        @foreach($courses as $course)
+           <x-course-item :course="$course"/>
         @endforeach
            
 

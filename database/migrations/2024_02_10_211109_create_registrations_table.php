@@ -16,10 +16,13 @@ return new class extends Migration
             $table->string('name');
             $table->string('email');
             $table->string('telphone');
-            $table->string('polo_id');
-            $table->string('course_id');
+            $table->unsignedBigInteger('polo_id');
+            $table->unsignedBigInteger('course_id');
             $table->string('payment');
             $table->string('cpf');
+            $table->string('rg');
+            $table->string('civilstate');
+            $table->date('birthday');
             $table->timestamps();
         });
     }

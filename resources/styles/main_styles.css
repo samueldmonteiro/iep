@@ -1517,3 +1517,15 @@ input:last-of-type
 {
 	margin-right: 0px;
 }
+
+.course_author_image {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.logoiep{
+	display: block;
+	width: 100%;
+	height: auto;
+	
+}

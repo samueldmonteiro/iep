@@ -78,12 +78,12 @@ html {
 label {
     margin-top: 10px;
 }
-.polos-c {
+.polos-c, .civil-state {
     display: flex;
     flex-direction: column;
 }
 
-.polos-c select {
+.polos-c select, select {
     padding: 10px 5px;
     border: 1px solid #5555;
 }
