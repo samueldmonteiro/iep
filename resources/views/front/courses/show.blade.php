@@ -32,7 +32,7 @@
         <div class="course_container" id="{{$course->id}}">
 
             <div class="image">
-                <img src="{{Vite::asset('resources/images/' . $course->image)}}" alt="">
+                <img src="{{Storage::url($course->image)}}" alt="">
                 <div class="btn-group tag-infos" role="group" aria-label="Basic example">
                     <button type="button" class="btn btn-info"><i class="bi bi-stopwatch"></i> Disponível</button>
                     <button type="button" class="btn btn-info"><i class="bi bi-patch-check"></i> Certificado</button>
