@@ -131,10 +131,10 @@ class RegistrationController extends Controller
 
     public function notificationPayment(Request $r)
     {
-        $body   = json_decode(file_get_contents('php://input'));
-        if(isset($body->data->id)) {
+        
+        if($r->type == "payment") {
 
-            $id = $body->data->id;
+            $id = $r->data->id;
             
             $curl = curl_init();
 

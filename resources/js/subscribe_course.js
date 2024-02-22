@@ -1,4 +1,3 @@
-
 let idReg = null;
 let count = 0;
 
@@ -73,5 +72,3 @@ document.querySelector('#actionSubs').addEventListener('click', e => {
         });
     }
 }); 
-
-
