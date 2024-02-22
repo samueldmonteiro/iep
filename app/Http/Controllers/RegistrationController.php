@@ -131,10 +131,9 @@ class RegistrationController extends Controller
 
     public function notificationPayment(Request $r)
     {
-        
         if($r->type == "payment") {
 
-            $id = $r->data->id;
+            $id = $r->id;
             
             $curl = curl_init();
 
@@ -157,12 +156,12 @@ class RegistrationController extends Controller
             curl_close($curl);
 
             $payment = json_decode($response);
-
             $reg = Registration::find($payment->external_reference);
 
             if ($payment->status == "approved") {
                 $reg->payment = "approved";
                 $reg->save();
+                return json_encode(['status'=>true]);
             }
         }
     }
