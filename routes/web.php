@@ -59,7 +59,7 @@ Route::get('/check', function(){
 });
 
 
-Route::controller(PanelController::class)->prefix('admin')->middleware('auth')->group(function(){
+Route::controller(PanelController::class)->prefix('iep')->middleware('auth')->group(function(){
     Route::get('/', 'index')->name('admin.index');
     Route::get('/acesso', 'loginPage')->name('admin.loginPage')->withoutMiddleware('auth');
     Route::post('/login', 'login')->name('admin.login')->withoutMiddleware('auth');
