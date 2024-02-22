@@ -137,7 +137,7 @@ class RegistrationController extends Controller
           'path' => storage_path('logs/custom.log'),
         ])->info($r->all());
 
-        if($r->type == "payment") {
+        if($r->type == "payment" && $r->action == "payment.updated") {
 
             $id = $r->id;
 
