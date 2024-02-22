@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Registration;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 
 class RegistrationController extends Controller
@@ -131,13 +132,24 @@ class RegistrationController extends Controller
 
     public function notificationPayment(Request $r)
     {
+        Log::build([
+          'driver' => 'single',
+          'path' => storage_path('logs/custom.log'),
+        ])->info($r->all());
+
         if($r->type == "payment") {
 
             $id = $r->id;
-            if(isset($r->data->id)){
-                $id = $r->data->id;
+
+            if(isset($_POST['data']['id'])){
+                $id = $_POST['data']['id'];
             }
-            
+            else if(isset($r->data->id)){
+                $id = $r->data->id;
+            }else if(isset($r->data_id)){
+                $id = $r->data_id;            
+            }
+
             $curl = curl_init();
 
             curl_setopt_array($curl, array(
