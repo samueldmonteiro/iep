@@ -133,14 +133,13 @@
                                 style="background-image:url({{Vite::asset('resources/images/search_background.jpg')}});"></div>
                             <div class="search_content text-center">
                                 <h1 class="search_title">Buscar por um Curso</h1>
-                                <form id="search_form" class="search_form" action="post">
-                                    <input id="search_form_name" class="input_field search_form_name" type="text"
-                                        placeholder="Nome do Curso" required="required"
-                                        data-error="Course name is required.">
-                                   
-                                    <select class="input_field search_form_category">
-                                        <option>Cururupu</option>
-                                        <option>Pinheiro</option>
+
+
+                                <form action="{{route('courses.index')}}" id="search_form" class="search_form" action="post">
+                                    <select name="polo" class="input_field search_form_category">
+                                        @foreach($polos as $polo)
+                                    <option value="{{$polo->name}}">{{$polo->name}}</option>
+                                        @endforeach
                                     </select>
                                    
                                     <button id="search_submit_button" type="submit"
@@ -229,55 +228,28 @@
                                 <div class="owl-item">
                                     <div class="testimonials_item text-center">
                                         <div class="quote">“</div>
-                                        <p class="testimonials_text">In aliquam, augue a gravida rutrum, ante nisl
-                                            fermentum nulla, vitae tempor nisl ligula vel nunc. Proin quis mi malesuada,
-                                            finibus tortor fermentum.In aliquam, augue a gravida rutrum, ante nisl
-                                            fermentum nulla, vitae tempor nisl ligula vel nunc. Proin quis mi malesuada,
-                                            finibus tortor fermentum.</p>
+                                        <p class="testimonials_text">É com imensa satisfação que compartilho meu depoimento sobre a Instituição de Ensino IEP, uma verdadeira fonte de inspiração e crescimento acadêmico. Desde que ingressei nesta instituição, tenho vivenciado uma jornada educacional enriquecedora que ultrapassou todas as minhas expectativas.</p>
                                         <div class="testimonial_user">
                                             <div class="testimonial_image mx-auto">
                                                 <img src="{{Vite::asset('resources/images/testimonials_user.jpg')}}" alt="">
                                             </div>
-                                            <div class="testimonial_name">james cooper</div>
-                                            <div class="testimonial_title">Graduate Student</div>
+                                            <div class="testimonial_name">Ana Vitória</div>
+                                            <div class="testimonial_title">Estudante</div>
                                         </div>
                                     </div>
                                 </div>
 
-                                <!-- Testimonials Item -->
+   <!-- Testimonials Item -->
                                 <div class="owl-item">
                                     <div class="testimonials_item text-center">
                                         <div class="quote">“</div>
-                                        <p class="testimonials_text">In aliquam, augue a gravida rutrum, ante nisl
-                                            fermentum nulla, vitae tempor nisl ligula vel nunc. Proin quis mi malesuada,
-                                            finibus tortor fermentum.In aliquam, augue a gravida rutrum, ante nisl
-                                            fermentum nulla, vitae tempor nisl ligula vel nunc. Proin quis mi malesuada,
-                                            finibus tortor fermentum.</p>
+                                        <p class="testimonials_text">É com imensa satisfação que compartilho meu depoimento sobre a Instituição de Ensino IEP, uma verdadeira fonte de inspiração e crescimento acadêmico. Desde que ingressei nesta instituição, tenho vivenciado uma jornada educacional enriquecedora que ultrapassou todas as minhas expectativas.</p>
                                         <div class="testimonial_user">
                                             <div class="testimonial_image mx-auto">
                                                 <img src="{{Vite::asset('resources/images/testimonials_user.jpg')}}" alt="">
                                             </div>
-                                            <div class="testimonial_name">james cooper</div>
-                                            <div class="testimonial_title">Graduate Student</div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- Testimonials Item -->
-                                <div class="owl-item">
-                                    <div class="testimonials_item text-center">
-                                        <div class="quote">“</div>
-                                        <p class="testimonials_text">In aliquam, augue a gravida rutrum, ante nisl
-                                            fermentum nulla, vitae tempor nisl ligula vel nunc. Proin quis mi malesuada,
-                                            finibus tortor fermentum.In aliquam, augue a gravida rutrum, ante nisl
-                                            fermentum nulla, vitae tempor nisl ligula vel nunc. Proin quis mi malesuada,
-                                            finibus tortor fermentum.</p>
-                                        <div class="testimonial_user">
-                                            <div class="testimonial_image mx-auto">
-                                                <img src="{{Vite::asset('resources/images/testimonials_user.jpg')}}" alt="">
-                                            </div>
-                                            <div class="testimonial_name">james cooper</div>
-                                            <div class="testimonial_title">Graduate Student</div>
+                                            <div class="testimonial_name">Ana Vitória</div>
+                                            <div class="testimonial_title">Estudante</div>
                                         </div>
                                     </div>
                                 </div>
@@ -306,73 +278,42 @@
 
                 <div class="event_items">
 
+                @foreach($polos as $polo)
+                    <div class="row event_item">
+                        <div class="col">
+                            <div class="row d-flex flex-row align-items-end">
+
+                                <div class="col-lg-2 order-lg-1 order-2">
+                                    <div
+                                        class="event_date d-flex flex-column align-items-center justify-content-center">
+                                        <div class="event_day">{{$polo->acronym}}</div>
+                                        <div class="event_month">MA</div>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6 order-lg-2 order-3">
+                                    <div class="event_content">
+                                        <div class="event_name"><a class="trans_200" href="#">Polo IEP {{$polo->name}} MA</a></div>
+                                        <div class="event_location"></div>
+                                        <p>{{$polo->address}}</p>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-4 order-lg-3 order-1">
+                                    <div class="event_image">
+                                        <img src="{{Storage::url($polo->image)}}" alt="https://unsplash.com/@theunsteady5">
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
                     <!-- Event Item -->
-                    <div class="row event_item">
-                        <div class="col">
-                            <div class="row d-flex flex-row align-items-end">
-
-                                <div class="col-lg-2 order-lg-1 order-2">
-                                    <div
-                                        class="event_date d-flex flex-column align-items-center justify-content-center">
-                                        <div class="event_day">CPU</div>
-                                        <div class="event_month">MA</div>
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-6 order-lg-2 order-3">
-                                    <div class="event_content">
-                                        <div class="event_name"><a class="trans_200" href="#">Polo IEP Cururupu MA</a></div>
-                                        <div class="event_location"></div>
-                                        <p>Localizado na Rua Gervásio Santos, 218, Centro</p>
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-4 order-lg-3 order-1">
-                                    <div class="event_image">
-                                        <img src="{{Vite::asset('resources/images/event_1.jpg')}}" alt="https://unsplash.com/@theunsteady5">
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row event_item">
-                        <div class="col">
-                            <div class="row d-flex flex-row align-items-end">
-
-                                <div class="col-lg-2 order-lg-1 order-2">
-                                    <div
-                                        class="event_date d-flex flex-column align-items-center justify-content-center">
-                                        <div class="event_day">CPU</div>
-                                        <div class="event_month">MA</div>
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-6 order-lg-2 order-3">
-                                    <div class="event_content">
-                                        <div class="event_name"><a class="trans_200" href="#">Polo IEP Cururupu MA</a></div>
-                                        <div class="event_location"></div>
-                                        <p>Localizado na Rua Gervásio Santos, 218, Centro</p>
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-4 order-lg-3 order-1">
-                                    <div class="event_image">
-                                        <img src="{{Vite::asset('resources/images/event_1.jpg')}}" alt="https://unsplash.com/@theunsteady5">
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-
-
                 </div>
 
             </div>
         </div>
 
         <!-- Footer -->
-
-@endsection
+                @endsection

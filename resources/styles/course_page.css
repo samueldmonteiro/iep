@@ -74,6 +74,11 @@ html {
   text-align:justify;
 }
 
+.info span {
+  color: black;
+  display: block;
+  text-align: left;
+}
 
 label {
     margin-top: 10px;

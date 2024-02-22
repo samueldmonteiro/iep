@@ -34,7 +34,7 @@
             <div class="image">
                 <img src="{{Vite::asset('resources/images/' . $course->image)}}" alt="">
                 <div class="btn-group tag-infos" role="group" aria-label="Basic example">
-                    <button type="button" class="btn btn-info"><i class="bi bi-stopwatch"></i> Carga Horária: 60h</button>
+                    <button type="button" class="btn btn-info"><i class="bi bi-stopwatch"></i> Disponível</button>
                     <button type="button" class="btn btn-info"><i class="bi bi-patch-check"></i> Certificado</button>
                     <button type="button" class="btn btn-info"><i class="bi bi-patch-check"></i> Presencial</button>
                 </div>
@@ -44,6 +44,8 @@
                 <p class="title">{{$course->title}}</p>
                 <h2 class="minidesc">{{$course->mini_description}}</h2>
                 <p class="desc">{{$course->description}}</p>
+                <span><strong>Dias de Aula:</strong> Domingo</span>
+                <span><strong>Horários:</strong> Das 08:00 as 11:30 e retorno das 13:30 as 17:00</span>
                 <div class="active_polos">
 
                     @foreach($course->polos as $polo)
@@ -72,8 +74,9 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form class="row g-3">
+                    <div class="alert alert-info text-center">Preencha os Dados e Efetue o Pagamento para Liberar Sua Inscrição!</div>
 
+                <form class="row g-3">
                     <div class="col-md-6">
                         <label for="inputEmail4" class="form-label">Nome Completo</label>
                         <input type="text" class="form-control" id="name">
@@ -123,7 +126,7 @@
 
                     <div class="pixContainer">
                         <p class="title">Efetue o pagamento para completar sua Inscrição!</p>
-                        <span class="price">Valor: R$ 50,00</span>
+                        <span class="price">Valor: R$ 49,99</span>
                         <img id="qrcode" src="">
                         <span class="copypastetitle">Copia e Cola:</span>
                         <p id="copyPaste"></p>

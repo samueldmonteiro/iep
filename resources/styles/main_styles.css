@@ -1529,3 +1529,39 @@ input:last-of-type
 	height: auto;
 	
 }
+
+.success_container{
+	margin: 0 auto;
+	margin-bottom: 50px;
+	margin-top:250px;
+	max-width: 900px;
+	color: black;
+	padding: 0px 15px;
+}
+
+.success_container h1 {
+	color: var(--color-green);
+	font-weight: bold;
+	margin-bottom: 20px;
+}
+
+.success_container p {
+	color: black;
+	font-size: 1.4em;
+	line-height: 1.7em;
+	margin: 0;
+}
+.success_container .disclaimer p {
+	margin: 0;
+}
+
+.success_container .info {
+	margin-top: 20px;
+}
+
+
+@media (max-width:800px){
+	.success_container{
+	margin-top:150px;
+	}
+}

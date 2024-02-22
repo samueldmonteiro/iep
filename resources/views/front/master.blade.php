@@ -41,9 +41,8 @@
                 <nav class="main_nav_container">
                     <div class="main_nav">
                         <ul class="main_nav_list">
-                            <li class="main_nav_item"><a href="#">home</a></li>
+                            <li class="main_nav_item"><a href="{{route('front.index')}}">Home</a></li>
                             <li class="main_nav_item"><a href="{{route('courses.index')}}">Cursos</a></li>
-                            <li class="main_nav_item"><a href="#">Sobre Nós</a></li>
                             <!-- Example single danger button -->
                             {{-- <div class="btn-group">
                                 <button type="button" class="btn btn-danger dropdown-toggle" data-bs-toggle="dropdown"
@@ -60,7 +59,9 @@
                                     <li><a class="dropdown-item" href="#">Separated link</a></li>
                                 </ul>
                             </div> --}}
-                            <li class="main_nav_item"><a href="#">Contato</a></li>
+                            <li class="main_nav_item"><a href="{{route('front.contact')}}">Contato</a></li>
+                            <li class="main_nav_item"><a href="{{route('admin.loginPage')}}">Admin</a></li>
+
                         </ul>
                     </div>
                 </nav>
@@ -91,10 +92,11 @@
             <div class="menu_inner menu_mm">
                 <div class="menu menu_mm">
                     <ul class="menu_list menu_mm">
-                        <li class="menu_item menu_mm"><a href="#">Home</a></li>
-                        <li class="menu_item menu_mm"><a href="#">Sobre Nós</a></li>
+                        <li class="menu_item menu_mm"><a href="{{route('front.index')}}">Home</a></li>
                         <li class="menu_item menu_mm"><a href="{{route('courses.index')}}">Cursos</a></li>
-                        <li class="menu_item menu_mm"><a href="contact.html">Contato</a></li>
+                        <li class="menu_item menu_mm"><a href="{{route('front.contact')}}">Contato</a></li>
+                        <li class="menu_item menu_mm"><a href="{{route('admin.loginPage')}}">Admin</a></li>
+
                     </ul>
 
                     <!-- Menu Social -->
@@ -140,49 +142,17 @@
                                 </div>
                             </div>
                         </div>
-
-                        <!-- Footer Column - Menu -->
-
                         <div class="col-lg-3 footer_col">
-                            <div class="footer_column_title">Menu</div>
+                            <div class="footer_column_title">Contato</div>
                             <div class="footer_column_content">
                                 <ul>
-                                    <li class="footer_list_item"><a href="#">Home</a></li>
-                                    <li class="footer_list_item"><a href="#">About Us</a></li>
-                                    <li class="footer_list_item"><a href="courses.html">Courses</a></li>
-                                    <li class="footer_list_item"><a href="news.html">News</a></li>
-                                    <li class="footer_list_item"><a href="contact.html">Contact</a></li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <!-- Footer Column - Usefull Links -->
-
-                        <div class="col-lg-3 footer_col">
-                            <div class="footer_column_title">Usefull Links</div>
-                            <div class="footer_column_content">
-                                <ul>
-                                    <li class="footer_list_item"><a href="#">Testimonials</a></li>
-                                    <li class="footer_list_item"><a href="#">FAQ</a></li>
-                                    <li class="footer_list_item"><a href="#">Community</a></li>
-                                    <li class="footer_list_item"><a href="#">Campus Pictures</a></li>
-                                    <li class="footer_list_item"><a href="#">Tuitions</a></li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <!-- Footer Column - Contact -->
-
-                        <div class="col-lg-3 footer_col">
-                            <div class="footer_column_title">Contact</div>
-                            <div class="footer_column_content">
-                                <ul>
-                                    <li class="footer_contact_item">
+                                   
+                                   <li class="footer_contact_item">
                                         <div class="footer_contact_icon">
-                                            <img src="{{ Vite::asset('resources/images/placeholder.svg') }}"
+                                            <img src="{{ Vite::asset('resources/images/smartphone.svg') }}"
                                                 alt="https://www.flaticon.com/authors/lucy-g">
                                         </div>
-                                        Blvd Libertad, 34 m05200 Arévalo
+                                        +55 (98) 985424145
                                     </li>
                                     <li class="footer_contact_item">
                                         <div class="footer_contact_icon">

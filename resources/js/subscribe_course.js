@@ -1,16 +1,9 @@
 
+let idReg = null;
+let count = 0;
+
 document.querySelector('#actionSubs').addEventListener('click', e => {
     e.preventDefault();
-
-  /**  let count = 0;
-    setInterval(_=>{
-      count +=1;
-      console.log('testando');
-
-      if(count == 5){
-        window.location.href = APP_URL + '/sucesso';
-      }
-    }, 1000)**/
 
     if (document.querySelector('.pixContainer').style.display == 'block') {
         console.log('ja tem o qrcode');
@@ -45,9 +38,26 @@ document.querySelector('#actionSubs').addEventListener('click', e => {
             if (response.data.subscribe == 'exists') {
                 console.log('ja existe email');
             } else if(response.data.error){
-              console.log("Error", response.data.error);
-       }
+              document.querySelector('.alert').innerText = response.data.error;
+            }
             else {
+                idReg = response.data.registration_id;
+                console.log("idddd", idReg)
+                setInterval(_=>{
+                    count +=1;
+                    axios.post(APP_URL + '/checkpayment', {
+                        id: idReg
+                    }).then(response => {
+                        console.log(response.data)
+                        if (response.data.payment == false)
+                            console.log('ainda nao pagou');
+                        else
+                        window.location.href = APP_URL + '/sucesso/' + idReg;
+                    });
+                }, 2000);
+
+                document.querySelector('.alert').innerText = "Preencha os Dados e Efetue o Pagamento para Liberar Sua Inscrição!";
+
                 document.querySelectorAll('form input, form select').forEach(e => {
                     e.disabled = true;
                 });

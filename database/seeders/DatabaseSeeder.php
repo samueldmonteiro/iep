@@ -5,6 +5,9 @@ namespace Database\Seeders;
 use App\Models\Course;
 use App\Models\Polo;
 use App\Models\CoursePolo;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
+
 
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -24,7 +27,7 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
 
-        Course::create([
+        /**Course::create([
             'title' => 'Enfermagem',
             'description' =>'O curso de Enfermagem forma profissionais capazes de cuidar de pacientes para promover a recuperação da saúde ou qualidade de vida, coletar informações que possam ajudar no diagnóstico médico, administrar medicamentos e aplicar curativos, entre outras atividades.',
             'mini_description' =>'Atendimento, Apredizagem, Estagios',
@@ -38,10 +41,10 @@ class DatabaseSeeder extends Seeder
             'mini_description' => 'Internet, TI, Pacote Office, Edição',
             'image' =>'curso_informatica.jpg',
             'slug' =>'curso-informatica'
-        ]);
+        ]);**/
 
 
-        Polo::create([
+       /** Polo::create([
             'name' => 'Cururupu',
             'address' => 'Rua 3 quadra 2',
             'image' => 'polos/images/default.jpg',
@@ -57,40 +60,44 @@ class DatabaseSeeder extends Seeder
             'contact' => '9898',
             'slug'=> 'polo_pinheiro',
             'acronym' => 'PINH'
+        ]);**/
+
+
+         /**CoursePolo::create([
+            'course_id' => 1,
+            'polo_id' => 1,
+            'registration_price' => 49.99,
+            'available' => 1
+         ]);
+
+         CoursePolo::create([
+            'course_id' => 1,
+            'polo_id' => 2,
+            'registration_price' => 49.99,
+            'available' => 1
+         ]);
+
+         CoursePolo::create([
+            'course_id' => 2,
+            'polo_id' => 1,
+            'registration_price' => 49.99,
+            'available' => 1
+         ]);
+
+         CoursePolo::create([
+            'course_id' => 2,
+            'polo_id' => 2,
+            'registration_price' => 49.99,
+            'available' => 1
+         ]);**/
+
+        User::create([
+            'name'=> 'IEP ADMIN',
+            'username' => 'iep_admin@',
+            'email' => "iep@admi.com",
+            'admin' => true,
+            'password' => Hash::make('Iep4890_inst_adm22')
         ]);
-
-
-         CoursePolo::create([
-            'course_id' => 1,
-            'polo_id' => 1,
-            'registration_price' => 49.99,
-            'workload' => 60,
-            'available' => 1
-         ]);
-
-         CoursePolo::create([
-            'course_id' => 1,
-            'polo_id' => 2,
-            'registration_price' => 49.99,
-            'workload' => 60,
-            'available' => 1
-         ]);
-
-         CoursePolo::create([
-            'course_id' => 2,
-            'polo_id' => 1,
-            'registration_price' => 49.99,
-            'workload' => 60,
-            'available' => 1
-         ]);
-
-         CoursePolo::create([
-            'course_id' => 2,
-            'polo_id' => 2,
-            'registration_price' => 49.99,
-            'workload' => 60,
-            'available' => 1
-         ]);
         
     }
 }

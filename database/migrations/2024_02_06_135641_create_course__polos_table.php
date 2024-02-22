@@ -16,7 +16,6 @@ return new class extends Migration
             $table->unsignedBigInteger('course_id');
             $table->unsignedBigInteger('polo_id');
             $table->decimal('registration_price');
-            $table->integer('workload');
             $table->boolean('available');
             $table->timestamps();
         });

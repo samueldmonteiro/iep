@@ -38,7 +38,7 @@ class RegistrationController extends Controller
         CURLOPT_POSTFIELDS => '{
         "description": "Payment for product",
         "external_reference": "'.$reg->id.'",
-        "notification_url": "https://google.com",
+        "notification_url": "'. url('notificationpayment') .'",
         "payer": {
             "email": "test_user_123@testuser.com",
             "identification": {
@@ -74,7 +74,8 @@ class RegistrationController extends Controller
                     'copy_paste' => $copia_cola,
                     'qrcode' => "data:image/png;base64, {$img_qrcode}",
                     'amount' => 'R$ '. number_format($transaction_amount, 2, ','),
-                    'ext_reference' => $external_reference
+                    'ext_reference' => $external_reference,
+                    'registration_id' => $reg->id
                 ]);
             }
         }
@@ -93,7 +94,7 @@ class RegistrationController extends Controller
                 return json_encode(['error'=> 'Preencha Todos com Campos ABAIXO!']);
         }
         $registration = null;
-        if (Registration::where('email', $r->email)->where('course_id', $r->course_id)->first()) {
+        if (Registration::where('email', $r->email)->where('course_id', $r->course_id)->where('polo_id', $r->polo_id)->first()) {
             $registration = Registration::where('email', $r->email)->first();
         } else {
 
@@ -118,7 +119,7 @@ class RegistrationController extends Controller
 
     public function checkPayment(Request $r)
     {
-        $payment = Registration::where('email', $r->email)->first();
+        $payment = Registration::find($r->id);
 
         $resp = true;
         if ($payment->payment == "pending") {
@@ -130,9 +131,9 @@ class RegistrationController extends Controller
 
     public function notificationPayment(Request $r)
     {
-        if (isset($r->id)) {
+        if (isset($r->data->id)) {
 
-            $id = $r->id;
+            $id = $r->data->id;
 
             $curl = curl_init();
 
@@ -165,56 +166,10 @@ class RegistrationController extends Controller
         }
     }
 
-    public function index()
+    public function successRegister(Request $request)
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Registration $registration)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Registration $registration)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Registration $registration)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Registration $registration)
-    {
-        //
+        return view('front.successRegister', [
+            'registration' => Registration::find($request->id)
+        ]);
     }
 }

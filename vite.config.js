@@ -17,6 +17,8 @@ export default defineConfig({
                 'resources/styles/courses_styles.css',
                 'resources/styles/courses_responsive.css',
                 'resources/styles/modal.css',
+                'resources/styles/contact_styles.css',
+                'resources/styles/contact_responsive.css',
                 'resources/js/jquery-3.2.1.min.js',
                 'resources/styles/bootstrap4/popper.js',
                 'resources/styles/bootstrap4/bootstrap.min.js',
@@ -31,7 +33,13 @@ export default defineConfig({
                 'resources/js/custom.js',
                 'resources/js/app.js',
                 'resources/js/modal/main.js',
-                'resources/js/subscribe_course.js'
+                'resources/js/subscribe_course.js',
+                'resources/js/admin/datatables-simple-demo.js',
+                'resources/js/admin/admin.js',
+                'resources/js/admin/demo/chart-area-demo.js',
+                'resources/js/admin/demo/chart-bar-demo.js',
+
+
             ],
             refresh: true,
         }),

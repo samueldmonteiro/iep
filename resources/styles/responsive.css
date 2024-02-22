@@ -355,7 +355,8 @@
 	}
 	.card-title a
 	{
-		font-size: 20px;
+		font-size: 1.2em;
+		margin-top: -3px;
 	}
 	.card-text
 	{

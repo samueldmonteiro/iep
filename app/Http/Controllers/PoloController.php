@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Polo;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class PoloController extends Controller
 {
@@ -28,7 +29,24 @@ class PoloController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'address' => 'required',
+            'image' => 'required',
+            'acronym' => 'required',
+            'contact' => 'required',
+        ]);
+
+       $course = new Polo();
+       $course->name = $request->name;
+       $course->address = $request->address;
+       $course->contact = $request->contact;
+       $course->acronym = $request->acronym;
+       $course->image = $request->image->store('polos/images');
+       $course->slug = Str::slug($request->title);
+       $course->save();
+
+       return redirect()->back()->withMessage(['message'=> 'Polo Criado com Sucesso!']);
     }
 
     /**

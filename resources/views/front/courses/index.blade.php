@@ -8,7 +8,14 @@
 
 @section('content')
 <!-- Home -->
+<style>
+    @media (min-width:700px){
+    .popular {
+        margin-top: -10px;
+    }
+}
 
+</style>
 <div class="home">
     <div class="home_background_container prlx_parent">
         <div class="home_background prlx" style="background-image:url({{Vite::asset('resources/images/courses_background.jpg')}})"></div>
@@ -20,6 +27,17 @@
 
 <!-- Popular -->
 
+<div class="search_container">
+    <form action="{{route('courses.index')}}" method="GET">
+        <span>Polo:</span>
+        <select name="polo">
+            @foreach($polos as $polo)
+                <option <?php echo ($polo->name == $p_value) ? 'selected' : ''; ?> value="{{$polo->name}}">{{$polo->name}}</option>
+            @endforeach
+        </select>
+        <button type="submit" class="btn btn-success">Filtrar</button>
+    </form>
+</div>
 <div class="popular page_section">
     <div class="container">
         <div class="row">

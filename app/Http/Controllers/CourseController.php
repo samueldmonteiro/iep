@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Course;
 use App\Models\Polo;
+use App\Models\CoursePolo;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class CourseController extends Controller
 {
@@ -12,10 +14,18 @@ class CourseController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $r)
     {
+        $courses = Course::all();
+        if($r->polo){
+            if(Polo::where('name', $r->polo)->first()){
+                $courses = Polo::where('name', $r->polo)->first()->courses;
+            }
+        }
         return view('front.courses.index', [
-            'courses' => Course::all()
+            'courses' => $courses,
+            'polos' => Polo::all(),
+            'p_value' => $r->polo
         ]);
     }
 
@@ -32,7 +42,31 @@ class CourseController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'title' => 'required',
+            'mini_desc' => 'required',
+            'description' => 'required',
+            'image' => 'required',
+            'polos' => 'required',
+        ]);
+
+       $course = new Course();
+       $course->title = $request->title;
+       $course->mini_description = $request->mini_desc;
+       $course->description = $request->description;
+       $course->image = $request->image->store('courses/images');
+       $course->slug = Str::slug($request->title);
+       $course->save();
+
+       foreach($request->polos as $poloId){
+            $coursePolo = new CoursePolo();
+            $coursePolo->course_id = $course->id;
+            $coursePolo->polo_id = $poloId;
+            $coursePolo->registration_price = 49.99;
+            $coursePolo->available = 1;
+            $coursePolo->save();
+       }
+       return redirect()->back()->withMessage(['message'=> 'Curso Criado com Sucesso!']);
     }
 
     /**
@@ -40,9 +74,14 @@ class CourseController extends Controller
      */
     public function show(Request $r)
     {
+        $course = Course::where('slug', $r->course)->first();
+        if(!$course){
+            return redirect()->route('front.index');
+        }
+
         return view('front.courses.show', [
-            'course' => Course::where('slug', $r->course)->first(),
-            'polos' => Polo::all()
+            'course' => $course,
+            'polos' => $course->polos
         ]);
     }
 
