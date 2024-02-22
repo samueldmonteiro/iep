@@ -133,7 +133,7 @@ class RegistrationController extends Controller
     {
         if($r->type == "payment") {
 
-            $id = $r->id;
+            $id = $r->data->id;
             
             $curl = curl_init();
 
