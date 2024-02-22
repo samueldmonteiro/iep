@@ -38,8 +38,7 @@ export default defineConfig({
                 'resources/js/admin/admin.js',
                 'resources/js/admin/demo/chart-area-demo.js',
                 'resources/js/admin/demo/chart-bar-demo.js',
-
-
+                'resources/styles/admin/styles.css',
             ],
             refresh: true,
         }),
