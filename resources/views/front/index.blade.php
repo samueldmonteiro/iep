@@ -301,7 +301,7 @@
 
                                 <div class="col-lg-4 order-lg-3 order-1">
                                     <div class="event_image">
-                                        <img src="{{Storage::url($polo->image)}}" alt="https://unsplash.com/@theunsteady5">
+                                        <img src="{{Vite::asset('resources/images/course_7.jpg')}}" alt="https://unsplash.com/@theunsteady5">
                                     </div>
                                 </div>
 
