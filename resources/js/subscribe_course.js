@@ -72,3 +72,19 @@ document.querySelector('#actionSubs').addEventListener('click', e => {
         });
     }
 }); 
+
+
+
+
+
+
+document.querySelector('#btn-copy').addEventListener('click', e=>{
+    // Get the text field
+    var copyText = document.getElementById("copyPaste");
+
+    // Copy the text inside the text field
+    navigator.clipboard.writeText(copyText.innerText);
+
+    // Alert the copied text
+    e.currentTarget.innerText = "Copiado";
+});

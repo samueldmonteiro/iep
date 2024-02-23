@@ -130,7 +130,7 @@
                         <img id="qrcode" src="">
                         <span class="copypastetitle">Copia e Cola:</span>
                         <p id="copyPaste"></p>
-
+                        <button type="button" id="btn-copy" class="btn btn-info">Copiar</button>
                     </div>
                     <div class="col-12">
                         <button id="actionSubs" type="submit" class="btn btn-success">Inscreva-se</button>
