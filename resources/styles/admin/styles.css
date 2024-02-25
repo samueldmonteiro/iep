@@ -11262,10 +11262,18 @@ body {
   margin: 10px 0px 20px 0px;
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
+  gap: 20px;
+ 
 }
 
+.polos-price input {
+  max-width: 100px;
+}
+
+.polos-price .item {
+  display: flex;
+  flex-direction: column;
+}
 .polo-previews{
   padding: 20px;
 }
@@ -11283,12 +11291,12 @@ body {
   align-items: center;
 }
 
-.polo-previews .polo-item{
+.polo-previews .polo-item, .polo-previews .course-item{
   text-decoration: none;
   color: black;
 }
 
-.polo-previews .polo-item .card-text{
+.polo-previews .card-text{
   text-align: center;
   font-weight:bold ;
 }

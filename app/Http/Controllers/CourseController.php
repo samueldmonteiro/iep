@@ -24,7 +24,7 @@ class CourseController extends Controller
         }
         return view('front.courses.index', [
             'courses' => $courses,
-            'polos' => Polo::all(),
+            'polos' => Polo::orderByDesc('id')->get(),
             'p_value' => $r->polo
         ]);
     }
@@ -42,13 +42,24 @@ class CourseController extends Controller
      */
     public function store(Request $request)
     {
-
         $polos = null;
         $data = $request->all();
         foreach(array_keys($data) as $key){
             if(str_contains($key, 'polo')){
                 $polos[explode('_', $key)[1]] =  $data[$key];
             }
+        }
+
+        $checkContainPolo = false;
+        foreach($polos as $polo){
+            if(is_numeric($polo)){
+                $checkContainPolo = true;
+                break;
+            }
+        }
+
+        if(!$checkContainPolo){
+            return redirect()->back()->withErrors(['error'=> "Polo nao encontrado!"]);
         }
 
         $request->validate([
@@ -107,9 +118,69 @@ class CourseController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Course $course)
+    public function update(Request $request, $slug)
     {
-        //
+        $polos = null;
+        $data = $request->all();
+        foreach(array_keys($data) as $key){
+            if(str_contains($key, 'polo')){
+                $polos[explode('_', $key)[1]] =  $data[$key];
+            }
+        }
+
+        $checkContainPolo = false;
+        foreach($polos as $polo){
+            if(is_numeric($polo)){
+                $checkContainPolo = true;
+                break;
+            }
+        }
+
+        if(!$checkContainPolo){
+            return redirect()->back()->withErrors(['error'=> "Polo nao encontrado!"]);
+        }
+
+        $request->validate([
+            'title' => 'required',
+            'mini_desc' => 'required',
+            'description' => 'required',
+        ]);
+
+        $course = Course::where("slug", $slug)->first();
+        $course->title = $request->title;
+        $course->mini_description = $request->mini_desc;
+        $course->description = $request->description;
+        $course->slug = Str::slug($request->title);
+        if($request->image){
+            $course->image = $request->image->store('courses/images');
+        }
+        $course->save();
+
+        foreach(array_keys($polos) as $poloId){
+            if(CoursePolo::where('course_id', $course->id)->where('polo_id', $poloId)->first()){
+
+                if(is_numeric($polos[$poloId])){
+                    $updated = CoursePolo::where('course_id', $course->id)->where('polo_id', $poloId)->first();
+                    $updated->registration_price = $polos[$poloId];
+                    $updated->save();
+                }else{
+                    CoursePolo::where('course_id', $course->id)->where('polo_id', $poloId)->first()->delete();
+                }
+            }else{
+
+                if(is_numeric($polos[$poloId])){
+                    $coursePolo = new CoursePolo();
+                    $coursePolo->course_id = $course->id;
+                    $coursePolo->polo_id = $poloId;
+                    $coursePolo->registration_price = $polos[$poloId];
+                    $coursePolo->available = 1;
+                    $coursePolo->save();
+                }
+            }
+            
+        }
+
+       return redirect()->route('admin.showCourse', ['slug'=> $course->slug])->withMessage(['message'=> 'Polo Criado com Sucesso!']);
     }
 
     /**

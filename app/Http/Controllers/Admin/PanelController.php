@@ -8,6 +8,10 @@ use App\Models\Registration;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Polo;
+use App\Models\Course;
+use App\Models\CoursePolo;
+
+
 
 class PanelController extends Controller
 {
@@ -65,7 +69,9 @@ class PanelController extends Controller
 
     public function showCourses()
     {
-         return view('admin.courses.index');
+         return view('admin.courses.index', [
+            'courses' => Course::orderByDesc('id')->get()
+         ]);
     }
 
 
@@ -76,9 +82,27 @@ class PanelController extends Controller
          ]);
     }
 
-    public function showCourse()
+    public function showCourse(Request $r)
     {
-         return view('admin.showCourses');
+        $course = Course::where('slug', $r->slug)->first();
+
+        $prices =[];
+        foreach($course->polos as $polo){
+            $prices[] = CoursePolo::where('course_id', $course->id)->where('polo_id', $polo->id)->first()->registration_price;
+        }
+
+        $polos = [];
+
+        foreach(Polo::all() as $polo){
+            if(!CoursePolo::where('course_id', $course->id)->where('polo_id', $polo->id)->first()){
+                $polos[] = $polo;
+            }
+        }
+        return view('admin.courses.show', [
+            'course' => $course,
+            'polos_new' => $polos,
+            'prices' => $prices
+         ]);
     }
 
 
