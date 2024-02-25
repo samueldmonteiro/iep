@@ -72,5 +72,7 @@ Route::controller(PanelController::class)->prefix('iep')->middleware('auth')->gr
     Route::get('/polos', 'showPolos')->name('admin.showPolos');
 
     Route::get('/cursos/{slug}', 'showCourse')->name('admin.showCourse');
-    Route::get('/polos/{slug}', 'showPolo')->name('admin.showPolo');
+    Route::get('/polos/{slug}', 'showPolo')->name('admin.showPolo');    
 });
+
+Route::delete('registros/{registration}', [RegistrationController::class, 'destroy'])->name('registrations.destroy');

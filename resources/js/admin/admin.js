@@ -20,6 +20,8 @@ window.addEventListener('DOMContentLoaded', event => {
 
 
 
+
+
 if(document.querySelector('#deletePolo')){
     document.querySelector('#deletePolo').addEventListener('click', e=>{
         let btn = e.currentTarget;

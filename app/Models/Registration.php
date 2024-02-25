@@ -27,6 +27,6 @@ class Registration extends Model
 
     public function statusPayment()
     {
-        return $this->payment == 'approved' ? "Pago" : "Não Pago";
+        return $this->payment == 'approved' ? "Pago" : "Pendente";
     }
 }

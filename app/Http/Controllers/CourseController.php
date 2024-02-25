@@ -186,8 +186,13 @@ class CourseController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Course $course)
+    public function destroy($slug)
     {
-        //
+        $course = Course::where('slug', $slug)->first();
+
+        foreach(CoursePolo::where('course_id', $course->id)->get() as $coursePolo){
+            $coursePolo->delete();
+        }
+        $course->delete();
     }
 }

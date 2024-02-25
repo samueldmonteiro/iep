@@ -47,7 +47,26 @@
 				</div>
 			@endforeach
 		</div>
-  <button type="submit" class="btn btn-primary">Submit</button>
+  <button type="submit" class="btn btn-primary">Salvar</button>
+      <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">Deletar</button>
+
 </form>
 </main>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel"></h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Deseja Deletar Este Curso?     </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+        <button id="deletePolo" urlback="{{route('admin.showCourses')}}" url="{{route('courses.destroy', ['course'=> $course->slug])}}" type="button" class="btn btn-danger">Deletar</button>
+      </div>
+    </div>
+  </div>
+</div>
 @endsection

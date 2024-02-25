@@ -190,4 +190,11 @@ class RegistrationController extends Controller
             'registration' => Registration::find($request->id)
         ]);
     }
+
+
+    public function destroy(Request $r)
+    {
+        Registration::find($r->registration)->delete();
+        return redirect()->back();
+    }
 }

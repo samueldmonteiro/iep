@@ -2,15 +2,15 @@
 <html lang="en">
 
 <head>
-    <title>Course</title>
+    <title>IEP</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="description" content="Course Project">
+    <meta name="description" content="Instituto Educacional Profissionalizante">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <meta name="csrf-token" content="{{ csrf_token() }}" />
-
+    <link rel="shortcut icon" href="{{Vite::asset('resources/images/fav.png')}}" type="image/x-icon">
     @vite('resources/styles/app.scss')
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     @vite('resources/plugins/fontawesome-free-5.0.1/css/fontawesome-all.css')
