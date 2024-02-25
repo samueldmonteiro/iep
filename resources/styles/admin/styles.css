@@ -11257,3 +11257,38 @@ body {
 .form-create .form-group {
   margin-bottom: 15px;
 }
+
+.polos-price {
+  margin: 10px 0px 20px 0px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.polo-previews{
+  padding: 20px;
+}
+
+.polo-previews h1{
+    text-align: center;
+    margin: 20px 0px 50px 0px;
+}
+
+.polo-previews .itens {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  justify-content: center;
+  align-items: center;
+}
+
+.polo-previews .polo-item{
+  text-decoration: none;
+  color: black;
+}
+
+.polo-previews .polo-item .card-text{
+  text-align: center;
+  font-weight:bold ;
+}

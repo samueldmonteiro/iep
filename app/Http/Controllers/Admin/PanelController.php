@@ -62,6 +62,33 @@ class PanelController extends Controller
          return view('admin.createPolo');
     }
 
+
+    public function showCourses()
+    {
+         return view('admin.courses.index');
+    }
+
+
+    public function showPolos()
+    {
+         return view('admin.polos.index', [
+            'polos' => Polo::orderByDesc('id')->get()
+         ]);
+    }
+
+    public function showCourse()
+    {
+         return view('admin.showCourses');
+    }
+
+
+    public function showPolo(Request $r)
+    {
+         return view('admin.polos.show', [
+            'polo' => Polo::where('slug', $r->slug)->first()
+         ]);
+    }
+
     public function logout(Request $request)
     {
     Auth::logout();

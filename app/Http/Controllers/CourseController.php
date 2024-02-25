@@ -42,12 +42,20 @@ class CourseController extends Controller
      */
     public function store(Request $request)
     {
+
+        $polos = null;
+        $data = $request->all();
+        foreach(array_keys($data) as $key){
+            if(str_contains($key, 'polo')){
+                $polos[explode('_', $key)[1]] =  $data[$key];
+            }
+        }
+
         $request->validate([
             'title' => 'required',
             'mini_desc' => 'required',
             'description' => 'required',
             'image' => 'required',
-            'polos' => 'required',
         ]);
 
        $course = new Course();
@@ -58,14 +66,17 @@ class CourseController extends Controller
        $course->slug = Str::slug($request->title);
        $course->save();
 
-       foreach($request->polos as $poloId){
-            $coursePolo = new CoursePolo();
-            $coursePolo->course_id = $course->id;
-            $coursePolo->polo_id = $poloId;
-            $coursePolo->registration_price = 49.99;
-            $coursePolo->available = 1;
-            $coursePolo->save();
+       foreach(array_keys($polos) as $poloId){
+            if($polos[$poloId] && is_numeric($polos[$poloId])){
+                $coursePolo = new CoursePolo();
+                $coursePolo->course_id = $course->id;
+                $coursePolo->polo_id = $poloId;
+                $coursePolo->registration_price = $polos[$poloId];
+                $coursePolo->available = 1;
+                $coursePolo->save();
+            }
        }
+
        return redirect()->back()->withMessage(['message'=> 'Curso Criado com Sucesso!']);
     }
 

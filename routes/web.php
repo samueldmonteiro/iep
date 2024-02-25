@@ -67,4 +67,10 @@ Route::controller(PanelController::class)->prefix('iep')->middleware('auth')->gr
 
     Route::get('/criar/curso', 'createCourse')->name('admin.createCourse');
     Route::get('/criar/polo', 'createPortal')->name('admin.createPortal');
+
+    Route::get('/cursos', 'showCourses')->name('admin.showCourses');
+    Route::get('/polos', 'showPolos')->name('admin.showPolos');
+
+    Route::get('/cursos/{slug}', 'showCourse')->name('admin.showCourse');
+    Route::get('/polos/{slug}', 'showPolo')->name('admin.showPolo');
 });

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Polo;
+use App\Models\CoursePolo;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -37,14 +39,14 @@ class PoloController extends Controller
             'contact' => 'required',
         ]);
 
-       $course = new Polo();
-       $course->name = $request->name;
-       $course->address = $request->address;
-       $course->contact = $request->contact;
-       $course->acronym = $request->acronym;
-       $course->image = $request->image->store('polos/images');
-       $course->slug = Str::slug($request->title);
-       $course->save();
+       $polo = new Polo();
+       $polo->name = $request->name;
+       $polo->address = $request->address;
+       $polo->contact = $request->contact;
+       $polo->acronym = $request->acronym;
+       $polo->image = $request->image->store('polos/images');
+       $polo->slug = Str::slug($request->name);
+       $polo->save();
 
        return redirect()->back()->withMessage(['message'=> 'Polo Criado com Sucesso!']);
     }
@@ -68,16 +70,39 @@ class PoloController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Polo $polo)
+    public function update(Request $request, $slug)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'address' => 'required',
+            'acronym' => 'required',
+            'contact' => 'required',
+        ]);
+
+        $polo = Polo::where('slug', $slug)->first();
+        $polo->name = $request->name;
+        $polo->address = $request->address;
+        $polo->contact = $request->contact;
+        $polo->acronym = $request->acronym;
+        $polo->slug = Str::slug($request->name);
+        if($request->image){
+             $polo->image = $request->image->store('polos/images');
+        }
+        $polo->save();
+
+       return redirect()->route('admin.showPolo', ['slug'=> $polo->slug])->withMessage(['message'=> 'Polo Criado com Sucesso!']);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Polo $polo)
+    public function destroy($slug)
     {
-        //
+        $polo = Polo::where('slug', $slug)->first();
+
+        foreach(CoursePolo::where('polo_id', $polo->id)->get() as $coursePolo){
+            $coursePolo->delete();
+        }
+        $polo->delete();
     }
 }

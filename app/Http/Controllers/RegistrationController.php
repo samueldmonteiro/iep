@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Registration;
+use App\Models\CoursePolo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
@@ -23,7 +24,7 @@ class RegistrationController extends Controller
      * Display a listing of the resource.
      */
 
-    private function subscribeCurl(Registration $reg)
+    private function subscribeCurl(Registration $reg, $regPrice)
     {
         $curl = curl_init();
 
@@ -39,7 +40,7 @@ class RegistrationController extends Controller
         CURLOPT_POSTFIELDS => '{
         "description": "Payment for product",
         "external_reference": "'.$reg->id.'",
-        "notification_url": "'. url('notificationpayment') .'",
+        "notification_url": "'. 'http://google.com' .'",
         "payer": {
             "email": "test_user_123@testuser.com",
             "identification": {
@@ -48,7 +49,7 @@ class RegistrationController extends Controller
             }
         },
         "payment_method_id": "pix",
-        "transaction_amount": ' . $this->amount . '
+        "transaction_amount": ' . $regPrice . '
         }',
         CURLOPT_HTTPHEADER => array(
             'Content-Type: application/json',
@@ -115,7 +116,9 @@ class RegistrationController extends Controller
             };
         }
 
-        return  $this->subscribeCurl($registration);
+        $regPrice = CoursePolo::where('course_id', $r->course_id)->where('polo_id', $r->polo_id)->first()->registration_price;
+
+        return  $this->subscribeCurl($registration, $regPrice);
     }
 
     public function checkPayment(Request $r)
