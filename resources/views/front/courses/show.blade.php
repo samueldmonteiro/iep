@@ -17,7 +17,7 @@
 
 <div class="home">
     <div class="home_background_container prlx_parent">
-        <img src="{{Storage::url($course->image)}}" alt="">
+        <img src="{{Vite::asset('resources/images/slider_background.jpg')}}" alt="">
     </div>
     <div class="home_content">
         <h1>{{$course->title}}</h1>
