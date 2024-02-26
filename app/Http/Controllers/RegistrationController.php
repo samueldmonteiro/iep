@@ -40,7 +40,7 @@ class RegistrationController extends Controller
         CURLOPT_POSTFIELDS => '{
         "description": "Payment for product",
         "external_reference": "'.$reg->id.'",
-        "notification_url": "'. 'http://google.com' .'",
+        "notification_url": "'. url('notificationpayment') .'",
         "payer": {
             "email": "test_user_123@testuser.com",
             "identification": {
