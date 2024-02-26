@@ -153,6 +153,9 @@
             </div>
         </div>
 
+        <div class="educa-mais">
+            <img src="{{Vite::asset('resources/images/9c9bb65a-f171-4dac-abe7-c2736e104eda.jpg')}}" alt="">
+        </div>
         <!-- Services -->
 
         <div class="services page_section">
