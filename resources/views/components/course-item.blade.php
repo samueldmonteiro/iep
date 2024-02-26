@@ -1,7 +1,7 @@
 <div class="col-lg-4 course_box">
 
                         <a href="{{route('courses.show', ['course'=>$course->slug])}}" class="card">
-                            <img class="card-img-top" src="{{Vite::asset('resources/images/course_7.jpg')}}"
+                            <img class="card-img-top" src="{{Storage::url($course->image)}}"
                                 alt="https://unsplash.com/@kellybrito">
                             <div class="card-body text-center">
                                 <div class="card-title"><a href="{{route('courses.show', ['course'=>$course->slug])}}">{{$course->title}}</a></div>
