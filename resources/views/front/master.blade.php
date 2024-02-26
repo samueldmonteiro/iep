@@ -173,6 +173,8 @@
 
                     </div>
                 </div>
+                        <p class="text-center">Desenvolvido por <a href="https://www.instagram.com/sdavi._">Samuel Monteiro</a></p>
+
         </div>
         </footer>
 

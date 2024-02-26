@@ -117,8 +117,11 @@ class RegistrationController extends Controller
         }
 
         $regPrice = CoursePolo::where('course_id', $r->course_id)->where('polo_id', $r->polo_id)->first()->registration_price;
-
-        return  $this->subscribeCurl($registration, $regPrice);
+        if($regPrice <= 0.1){
+            return json_encode(['free' => true, 'idReg'=> $registration->id]);
+        }else{
+            return  $this->subscribeCurl($registration, $regPrice);
+        }
     }
 
     public function checkPayment(Request $r)

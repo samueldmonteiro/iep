@@ -40,32 +40,37 @@ document.querySelector('#actionSubs').addEventListener('click', e => {
               document.querySelector('.alert').innerText = response.data.error;
             }
             else {
-                idReg = response.data.registration_id;
-                console.log("idddd", idReg)
-                setInterval(_=>{
-                    count +=1;
-                    axios.post(APP_URL + '/checkpayment', {
-                        id: idReg
-                    }).then(response => {
-                        console.log(response.data)
-                        if (response.data.payment == false)
-                            console.log('ainda nao pagou');
-                        else
-                        window.location.href = APP_URL + '/sucesso/' + idReg;
+
+                if(response.data.free == true){
+                    window.location.href = APP_URL + '/sucesso/' + response.data.idReg;
+                }else{
+
+                    idReg = response.data.registration_id;
+                    setInterval(_=>{
+                        count +=1;
+                        axios.post(APP_URL + '/checkpayment', {
+                            id: idReg
+                        }).then(response => {
+                            console.log(response.data)
+                            if (response.data.payment == false)
+                                console.log('ainda nao pagou');
+                            else
+                            window.location.href = APP_URL + '/sucesso/' + idReg;
+                        });
+                    }, 2000);
+
+                    document.querySelector('.alert').innerText = "Preencha os Dados e Efetue o Pagamento para Liberar Sua Inscrição!";
+
+                    document.querySelectorAll('form input, form select').forEach(e => {
+                        e.disabled = true;
                     });
-                }, 2000);
-
-                document.querySelector('.alert').innerText = "Preencha os Dados e Efetue o Pagamento para Liberar Sua Inscrição!";
-
-                document.querySelectorAll('form input, form select').forEach(e => {
-                    e.disabled = true;
-                });
-                console.log(response.data)
-                const container = document.querySelector('.pixContainer');
-                container.querySelector('#qrcode').src = response.data.qrcode;
-                container.querySelector('.price').innerText = response.data.amount;
-                container.querySelector('#copyPaste').innerText = response.data.copy_paste;
-                container.style.display = 'block';
+                    console.log(response.data)
+                    const container = document.querySelector('.pixContainer');
+                    container.querySelector('#qrcode').src = response.data.qrcode;
+                    container.querySelector('.price').innerText = response.data.amount;
+                    container.querySelector('#copyPaste').innerText = response.data.copy_paste;
+                    container.style.display = 'block';
+                }
             }
         }, (error) => {
             console.log(error);

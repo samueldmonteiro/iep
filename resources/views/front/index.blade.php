@@ -293,7 +293,7 @@
 
                                 <div class="col-lg-6 order-lg-2 order-3">
                                     <div class="event_content">
-                                        <div class="event_name"><a class="trans_200" href="#">Polo IEP {{$polo->name}} MA</a></div>
+                                        <div class="event_name"><a class="trans_200" href="#">Polo IEP {{$polo->name}}</a></div>
                                         <div class="event_location"></div>
                                         <p>{{$polo->address}}</p>
                                     </div>
