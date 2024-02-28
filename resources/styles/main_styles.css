@@ -1566,20 +1566,32 @@ input:last-of-type
 	}
 }
 
-
-
 .educa-mais {
 	display: none;
-	margin-top: 40px;
+	margin-top: 0px;
 	margin-bottom: -50px;
 }
 
-.educa-mais img{
+.educa-mais img, .educa-mais-pc img{
 	width: 100%;
 }
 
-@media (max-width:500px){
+.educa-mais-pc img{
+	height: 100%;
+	display: block;
+	object-fit: cover;
+}
+
+.educa-mais-pc {
+	height: 650px;
+}
+
+@media (max-width:725px){
 	.educa-mais{
 		display: block;
+	}
+
+	.educa-mais-pc{
+		display: none;
 	}
 }

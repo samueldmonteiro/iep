@@ -156,6 +156,9 @@
         <div class="educa-mais">
             <img src="{{Vite::asset('resources/images/9c9bb65a-f171-4dac-abe7-c2736e104eda.jpg')}}" alt="">
         </div>
+        <div class="educa-mais-pc">
+            <img src="{{Vite::asset('resources/images/4db1b421-85c9-4e20-84c4-6909039eb97a.jpg')}}" alt="">
+        </div>
         <!-- Services -->
 
         <div class="services page_section">
