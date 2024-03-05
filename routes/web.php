@@ -8,7 +8,7 @@ use App\Http\Controllers\CourseController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\PoloController;
 use App\Http\Controllers\Admin\PanelController;
-
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RegistrationController;
 use \App\Http\Middleware\Authenticate;
 
@@ -24,16 +24,11 @@ use \App\Http\Middleware\Authenticate;
 |
 */
 
-Route::get('/', function () {
-    return view('front.index', [
-        'courses' => Course::limit(3)->get(),
-        'polos' => Polo::all()
-    ]);
-})->name('front.index');
 
-Route::get('/contato', function () {
-    return view('front.contact');
-})->name('front.contact');
+Route::controller(HomeController::class)->group(function(){
+    Route::get('/', 'home')->name('front.index');
+    Route::get('/contato', 'contact')->name('front.contact');
+});
 
 
 Route::resource('cursos', CourseController::class)->parameter('cursos', 'course')->names('courses');

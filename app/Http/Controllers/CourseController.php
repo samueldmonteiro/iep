@@ -7,6 +7,8 @@ use App\Models\Polo;
 use App\Models\CoursePolo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Vite;
+
 
 class CourseController extends Controller
 {
@@ -16,6 +18,13 @@ class CourseController extends Controller
      */
     public function index(Request $r)
     {
+        $head = $this->optimizer->optimize(
+            'Cursos - Instituto Educacional Profissionalizante (IEP)',
+            'IEP, A maior escola técnica da baixada Maranhense',
+            route('courses.index'),
+            Vite::asset('resources/images/logo.jpg')
+        )->render();
+
         $courses = Course::all();
         if($r->polo){
             if(Polo::where('name', $r->polo)->first()){
@@ -23,6 +32,7 @@ class CourseController extends Controller
             }
         }
         return view('front.courses.index', [
+            'head' => $head,
             'courses' => $courses,
             'polos' => Polo::orderByDesc('id')->get(),
             'p_value' => $r->polo
@@ -97,11 +107,21 @@ class CourseController extends Controller
     public function show(Request $r)
     {
         $course = Course::where('slug', $r->course)->first();
+
+        $head = $this->optimizer->optimize(
+            $course->title . " - Instituto Educacional Profissionalizante (IEP)",
+            'IEP, A maior escola técnica da baixada Maranhense',
+            route('courses.show', ['course'=> $r->course]),
+            Vite::asset('resources/images/logo.jpg')
+        )->render();
+
+        $course = Course::where('slug', $r->course)->first();
         if(!$course){
             return redirect()->route('front.index');
         }
 
         return view('front.courses.show', [
+            'head' => $head,
             'course' => $course,
             'polos' => $course->polos
         ]);
