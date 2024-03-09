@@ -204,7 +204,31 @@
             </div>
         </div>
 
-        <!-- Testimonials -->
+        <div class="testimonials page_section slide_images" style="background:white;">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-10 offset-lg-1">
+                        <div class="testimonials_slider_container">
+                            <div class="owl-carousel owl-theme testimonials_slider">
+                                <div class="owl-item">
+                                    <img src="{{Vite::asset('resources/images/db7af19a-6e64-4f26-9fa5-21022ebabc4d.jpg')}}" alt="">
+                                </div>
+                                <div class="owl-item">
+                                    <img src="{{Vite::asset('resources/images/7699c613-30f3-4adf-842b-ad30a54b5d30.jpg')}}" alt="">
+                                </div>
+
+                                <div class="owl-item">
+                                    <img src="{{Vite::asset('resources/images/a3eee415-571b-4708-9ff1-7b1c225c848b.jpg')}}" alt="">
+                                </div>
+
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
 
         <div class="testimonials page_section">
             <!-- <div class="testimonials_background" style="background-image:url(images/testimonials_background.jpg)"></div> -->
@@ -245,21 +269,6 @@
                                     </div>
                                 </div>
 
-   <!-- Testimonials Item -->
-                                <div class="owl-item">
-                                    <div class="testimonials_item text-center">
-                                        <div class="quote">“</div>
-                                        <p class="testimonials_text">É com imensa satisfação que compartilho meu depoimento sobre a Instituição de Ensino IEP, uma verdadeira fonte de inspiração e crescimento acadêmico. Desde que ingressei nesta instituição, tenho vivenciado uma jornada educacional enriquecedora que ultrapassou todas as minhas expectativas.</p>
-                                        <div class="testimonial_user">
-                                            <div class="testimonial_image mx-auto">
-                                                <img src="{{Vite::asset('resources/images/testimonials_user.jpg')}}" alt="">
-                                            </div>
-                                            <div class="testimonial_name">Ana Vitória</div>
-                                            <div class="testimonial_title">Estudante</div>
-                                        </div>
-                                    </div>
-                                </div>
-
                             </div>
 
                         </div>
@@ -270,6 +279,7 @@
         </div>
 
         <!-- Events -->
+        
 
         <div class="events page_section">
             <div class="container">
