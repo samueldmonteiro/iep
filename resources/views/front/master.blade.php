@@ -8,7 +8,7 @@
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <meta name="csrf-token" content="{{ csrf_token() }}" />
-    {!! $head !!}
+    {!! $head ?? "" !!}
     <link rel="shortcut icon" href="{{Vite::asset('resources/images/fav.png')}}" type="image/x-icon">
     @vite('resources/styles/app.scss')
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">

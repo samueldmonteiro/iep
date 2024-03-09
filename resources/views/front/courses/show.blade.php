@@ -46,14 +46,15 @@
                 <p class="desc">{{$course->description}}</p>
                 <span><strong>Dias de Aula:</strong> Domingo</span>
                 <span><strong>Horários:</strong> Das 08:00 as 11:30 e retorno das 13:30 as 17:00</span>
-                <div class="active_polos">
 
-                    @foreach($course->polos as $polo)
+                <p class="title-reg-prices">Valores de Inscrição:</p>
+                <div class="active_polos">
+                    @foreach($course->polos as $key => $polo)
                     <div class="item">
                         <button type="button" class="btn btn-info">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
                                 <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6"></path>
-                            </svg>{{$polo->name}}
+                            </svg>{{$polo->name . ' - ' . $registration_prices[$key]}}
                         </button>
                     </div>
                     @endforeach
@@ -110,10 +111,19 @@
                     </div>
 
                     <div class="col-6">
+                        <label for="inputAddress" class="form-label">Endereço</label>
+                        <input type="text" placeholder="Ex: bairro, rua, numero" class="form-control" id="address">
+                    </div>
+                    
+                    <div class="col-6">
+                        <label for="inputAddress" class="form-label">Profissão</label>
+                        <input type="text" class="form-control" id="profession">
+                    </div>
+
+                    <div class="col-12">
                         <label for="inputAddress" class="form-label">Data de Nascimento</label>
                         <input type="date" class="form-control" id="birthday">
                     </div>
-
 
                     <div class="col-12 polos-c">
                         <label for="inputAddress" class="form-label">Onde vai Estudar</label>

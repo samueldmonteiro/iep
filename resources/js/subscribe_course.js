@@ -28,8 +28,9 @@ document.querySelector('#actionSubs').addEventListener('click', e => {
             course_id: document.querySelector('.course_container').id,
             civilstate: document.querySelector('#civilstate').value,
             rg: document.querySelector('#rg').value,
-            birthday: document.querySelector('#birthday').value
-
+            birthday: document.querySelector('#birthday').value,
+            profession: document.querySelector('#profession').value,
+            address: document.querySelector('#address').value
         }
         axios.post(APP_URL + '/subscribe', data
         ).then((response) => {

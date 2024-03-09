@@ -220,8 +220,6 @@
                                 <div class="owl-item">
                                     <img src="{{Vite::asset('resources/images/a3eee415-571b-4708-9ff1-7b1c225c848b.jpg')}}" alt="">
                                 </div>
-
-                                
                             </div>
                         </div>
                     </div>

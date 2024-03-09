@@ -24,6 +24,8 @@
                             <th>CPF</th>
                             <th>RG</th>
                             <th>Estado Civil</th>
+                            <th>Profissão</th>
+                            <th>Endereço</th>
                             <th>Aniversário</th>
                             <th>Inscrição</th>
                             <th>Deletar</th>
@@ -41,6 +43,8 @@
                             <th>CPF</th>
                             <th>RG</th>
                             <th>Estado Civil</th>
+                            <th>Profissão</th>
+                            <th>Endereço</th>
                             <th>Aniversário</th>
                             <th>Inscricão</th>
                             <th>Deletar</th>
@@ -59,6 +63,8 @@
                                 <td>{{$reg->cpf}}</td>
                                 <td>{{$reg->rg}}</td>
                                 <td>{{$reg->civilstate}}</td>
+                                <td>{{$reg->profession}}</td>
+                                <td>{{$reg->address}}</td>
                                 <td>{{$reg->birthday}}</td>
                                 <td>{{$reg->created_at}}</td>
                                 <td>

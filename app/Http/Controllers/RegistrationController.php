@@ -105,6 +105,8 @@ class RegistrationController extends Controller
             $registration->email = $r->email;
             $registration->cpf = $r->cpf;
             $registration->rg = $r->rg;
+            $registration->address = $r->address;
+            $registration->profession = $r->profession;
             $registration->birthday = $r->birthday;
             $registration->civilstate = $r->civilstate;
             $registration->telphone = $r->telphone;

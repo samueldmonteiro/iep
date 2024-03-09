@@ -120,10 +120,23 @@ class CourseController extends Controller
             return redirect()->route('front.index');
         }
 
+        $registration_prices = [];
+        foreach($course->polos as $polo){
+            $value = CoursePolo::where('course_id', $course->id)->where('polo_id', $polo->id)->first()->registration_price;
+            
+            if($value <= 0){
+                 $registration_prices[] = "Grátis" ;
+            }else{
+            $registration_prices[] = "R$ " .number_format($value, 2 , ',');
+            }
+
+        }
+        
         return view('front.courses.show', [
             'head' => $head,
             'course' => $course,
-            'polos' => $course->polos
+            'polos' => $course->polos,
+            'registration_prices' => $registration_prices
         ]);
     }
 
