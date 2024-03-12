@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    <meta name="google-site-verification" content="EaCtmmB-QnpZ6Co1GuCjWhTKJmpwiHNBoArrs9k-GYs" />
     <meta name="csrf-token" content="{{ csrf_token() }}" />
     {!! $head ?? "" !!}
     <link rel="shortcut icon" href="{{Vite::asset('resources/images/fav.png')}}" type="image/x-icon">
@@ -137,7 +138,7 @@
                             <div class="footer_column_title">Contato</div>
                             <div class="footer_column_content">
                                 <ul>
-                                   
+
                                    <li class="footer_contact_item">
                                         <div class="footer_contact_icon">
                                             <img src="{{ Vite::asset('resources/images/smartphone.svg') }}"
