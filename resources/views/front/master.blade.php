@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    <meta name="google-adsense-account" content="ca-pub-7250301713130177">
     <meta name="google-site-verification" content="EaCtmmB-QnpZ6Co1GuCjWhTKJmpwiHNBoArrs9k-GYs" />
     <meta name="csrf-token" content="{{ csrf_token() }}" />
     {!! $head ?? "" !!}
