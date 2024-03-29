@@ -119,12 +119,28 @@
                                 <p class="register_text">Descubra seu potencial aqui, onde a excelência acadêmica se encontra com uma didática inovadora. Oferecemos cursos técnicos, graduados e pós-graduados, proporcionando uma experiência educacional de qualidade. Venha moldar seu futuro conosco e trilhe o caminho para o sucesso profissional na IEP.
                                 <div class="button button_1 register_button mx-auto trans_200"><a
                                         href="{{route('courses.index')}}">Ver Cursos</a></div>
+                                      <div style="padding:30px;margin-bottom:-130px">
+		                        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7250301713130177"
+					     crossorigin="anonymous"></script>
+					<!-- site iep -->
+					<ins class="adsbygoogle"
+					     style="display:block;"
+					     data-ad-client="ca-pub-7250301713130177"
+					     data-ad-slot="1311455276"
+					     data-ad-format="auto"
+					     data-full-width-responsive="true"></ins>
+					<script>
+					     (adsbygoogle = window.adsbygoogle || []).push({});
+					</script>
+				   </div>
                             </div>
+                            
                         </div>
+
 
                     </div>
 
-                    <div class="col-lg-6 nopadding">
+                    <div class="col-lg-6 nopadding" style="postiton:relative;">
 
                         <!-- Search -->
 
@@ -144,8 +160,13 @@
                                    
                                     <button id="search_submit_button" type="submit"
                                         class="search_submit_button trans_200" value="Submit">Pesquisar</button>
+                                        
+                   
                                 </form>
+                                
+                        
                             </div>
+                            
                         </div>
 
                     </div>
